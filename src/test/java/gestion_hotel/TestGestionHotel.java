@@ -122,7 +122,6 @@ public class TestGestionHotel {
         var premiereReservation = hotel.faireReservation(client, chambre101, arrivee, depart);
         hotel.annulerReservation(premiereReservation.getId());
 
-        // Même chambre, mêmes dates -> doit redevenir disponible après annulation
         var nouvelleReservation = hotel.faireReservation(client, chambre101, arrivee, depart);
 
         assertNotNull(nouvelleReservation);
