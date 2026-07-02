@@ -26,4 +26,10 @@ public class Reservation {
     public long getNombreNuits() {
         return java.time.temporal.ChronoUnit.DAYS.between(dateArrivee, dateDepart);
     }
+
+    public boolean estActiveAujourdhui() {
+        var aujourdhui = LocalDate.now();
+        return aujourdhui.isAfter(dateArrivee) && aujourdhui.isBefore(dateDepart)
+                && statut == StatutReservation.CONFIRMEE;
+    }
 }

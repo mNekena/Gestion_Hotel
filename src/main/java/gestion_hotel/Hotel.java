@@ -126,6 +126,27 @@ public class Hotel {
         }
     }
 
+    public Reservation trouverReservation(int idReservation) {
+        for (Reservation r : reservations) {
+            if (r.getId() == idReservation) return r;
+        }
+        System.out.println("Réservation non trouvée.");
+        return null;
+    }
+
+    public void voirFacturesImpayees() {
+        boolean found = false;
+        for (Facture f : factures) {
+            if (!f.isPayee()) {
+                System.out.println("Facture #" + f.getId()
+                        + " - " + f.getReservation().getClient().getNom()
+                        + " - " + f.getMontant() + " Ar");
+                found = true;
+            }
+        }
+        if (!found) System.out.println("Aucune facture impayée.");
+    }
+
     public void voirPersonnels() {
         for (Personnel p : personnels) {
             System.out.println(p);
@@ -145,6 +166,16 @@ public class Hotel {
             System.out.println("Personnel non trouvé.");
         }
         return supprime;
+    }
+
+    public List<Reservation> reservationsParClient(Client client) {
+        List<Reservation> resultat = new ArrayList<>();
+        for (Reservation r : reservations) {
+            if (r.getClient().getTelephone().equals(client.getTelephone())) {
+                resultat.add(r);
+            }
+        }
+        return resultat;
     }
 }
 
